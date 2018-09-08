@@ -1,4 +1,4 @@
-#-*- coding: utf-8 -*-
+#*- coding: utf-8 -*-
 """
 Translation with a Sequence to Sequence Network and Attention
 *************************************************************
