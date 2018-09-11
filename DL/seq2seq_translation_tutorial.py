@@ -240,16 +240,6 @@ def readLangs(lang1, lang2, reverse=True):
 
 MAX_LENGTH = 10
 
-eng_prefixes = (
-    "i am ", "i m ",
-    "he is", "he s ",
-    "she is", "she s",
-    "you are", "you re ",
-    "we are", "we re ",
-    "they are", "they re "
-)
-
-
 def filterPair(p):
     return len(p[0].split(' ')) < MAX_LENGTH and \
         len(p[1].split(' ')) < MAX_LENGTH and \
@@ -778,10 +768,17 @@ attn_decoder1 = AttnDecoderRNN(hidden_size, output_lang.n_words, dropout_p=0.1).
 
 trainIters(encoder1, attn_decoder1, 75000, print_every=5000)
 
+'''
+TODO:
+
+    Save encoder1, attn_decoder1.
+'''
+
 ######################################################################
 #
 
 evaluateRandomly(encoder1, attn_decoder1)
+torch.save([encoder1, attn_decoder1], '.model/seq2seq_encoder_decoder.pkl')
 
 
 ######################################################################
@@ -834,6 +831,7 @@ def evaluateAndShowAttention(input_sentence):
     print('output =', ' '.join(output_words))
     showAttention(input_sentence, output_words, attentions)
 
+encoder1, attn_decoder1 = torch.load('./model/seq2seq_encoder_decoder.pkl')
 
 evaluateAndShowAttention("그새끼 미친놈이네")
 
