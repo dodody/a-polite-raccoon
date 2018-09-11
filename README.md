@@ -13,8 +13,8 @@ TrainingData : user-nuguri.txt
 
 ### Making Data-base (use Google's Spread-Sheet)
 1. Download Google spread sheet
-2. <pre><code> python makeNuguriDB.py [filename] </code><pre>
-3. example <pre><code> python makeNuguriDB.py data/nuguridataset.csv </code><pre>
+2. <pre><code> python makeNuguriDB.py [filename] </code></pre>
+3. example <pre><code> python makeNuguriDB.py data/nuguridataset.csv </code></pre>
 4. check your data folder
 
 ### Training Encoder, Decoder
