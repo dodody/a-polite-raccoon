@@ -1,88 +1,3 @@
-#*- coding: utf-8 -*-
-"""
-Translation with a Sequence to Sequence Network and Attention
-*************************************************************
-**Author**: `Sean Robertson <https://github.com/spro/practical-pytorch>`_
-
-In this project we will be teaching a neural network to translate from
-French to English.
-
-::
-
-    [KEY: > input, = target, < output]
-
-    > il est en train de peindre un tableau .
-    = he is painting a picture .
-    < he is painting a picture .
-
-    > pourquoi ne pas essayer ce vin delicieux ?
-    = why not try that delicious wine ?
-    < why not try that delicious wine ?
-
-    > elle n est pas poete mais romanciere .
-    = she is not a poet but a novelist .
-    < she not not a poet but a novelist .
-
-    > vous etes trop maigre .
-    = you re too skinny .
-    < you re all alone .
-
-... to varying degrees of success.
-
-This is made possible by the simple but powerful idea of the `sequence
-to sequence network <http://arxiv.org/abs/1409.3215>`__, in which two
-recurrent neural networks work together to transform one sequence to
-another. An encoder network condenses an input sequence into a vector,
-and a decoder network unfolds that vector into a new sequence.
-
-.. figure:: /_static/img/seq-seq-images/seq2seq.png
-   :alt:
-
-To improve upon this model we'll use an `attention
-mechanism <https://arxiv.org/abs/1409.0473>`__, which lets the decoder
-learn to focus over a specific range of the input sequence.
-
-**Recommended Reading:**
-
-I assume you have at least installed PyTorch, know Python, and
-understand Tensors:
-
--  http://pytorch.org/ For installation instructions
--  :doc:`/beginner/deep_learning_60min_blitz` to get started with PyTorch in general
--  :doc:`/beginner/pytorch_with_examples` for a wide and deep overview
--  :doc:`/beginner/former_torchies_tutorial` if you are former Lua Torch user
-
-
-It would also be useful to know about Sequence to Sequence networks and
-how they work:
-
--  `Learning Phrase Representations using RNN Encoder-Decoder for
-   Statistical Machine Translation <http://arxiv.org/abs/1406.1078>`__
--  `Sequence to Sequence Learning with Neural
-   Networks <http://arxiv.org/abs/1409.3215>`__
--  `Neural Machine Translation by Jointly Learning to Align and
-   Translate <https://arxiv.org/abs/1409.0473>`__
--  `A Neural Conversational Model <http://arxiv.org/abs/1506.05869>`__
-
-You will also find the previous tutorials on
-:doc:`/intermediate/char_rnn_classification_tutorial`
-and :doc:`/intermediate/char_rnn_generation_tutorial`
-helpful as those concepts are very similar to the Encoder and Decoder
-models, respectively.
-
-And for more, read the papers that introduced these topics:
-
--  `Learning Phrase Representations using RNN Encoder-Decoder for
-   Statistical Machine Translation <http://arxiv.org/abs/1406.1078>`__
--  `Sequence to Sequence Learning with Neural
-   Networks <http://arxiv.org/abs/1409.3215>`__
--  `Neural Machine Translation by Jointly Learning to Align and
-   Translate <https://arxiv.org/abs/1409.0473>`__
--  `A Neural Conversational Model <http://arxiv.org/abs/1506.05869>`__
-
-
-**Requirements**
-"""
 from __future__ import unicode_literals, print_function, division
 from io import open
 import unicodedata
@@ -274,12 +189,6 @@ def prepareData(lang1, lang2, reverse=False):
     print(output_lang.name, output_lang.n_words)
     return input_lang, output_lang, pairs
 
-
-input_lang, output_lang, pairs = prepareData('user', 'nuguri', False)
-print("input, output, pairs", input_lang, output_lang, pairs)
-print(random.choice(pairs))
-
-
 ######################################################################
 # The Seq2Seq Model
 # =================
@@ -338,11 +247,9 @@ class EncoderRNN(nn.Module):
         self.embedding = nn.Embedding(input_size, hidden_size)
         self.gru = nn.GRU(hidden_size, hidden_size)
 
-
     def forward(self, input, hidden):
         embedded = self.embedding(input).view(1, 1, -1)
         output = embedded
-        self.gru.flatten_parameters()
         output, hidden = self.gru(output, hidden)
         return output, hidden
 
@@ -746,61 +653,20 @@ def evaluateRandomly(encoder, decoder, n=10):
 
 
 ######################################################################
-# Visualizing Attention
-# ---------------------
+# Training and Evaluating
+# =======================
 #
-# A useful property of the attention mechanism is its highly interpretable
-# outputs. Because it is used to weight specific encoder outputs of the
-# input sequence, we can imagine looking where the network is focused most
-# at each time step.
+# With all these helper functions in place (it looks like extra work, but
+# it makes it easier to run multiple experiments) we can actually
+# initialize a network and start training.
 #
-# You could simply run ``plt.matshow(attentions)`` to see attention output
-# displayed as a matrix, with the columns being input steps and rows being
-# output steps:
+# Remember that the input sentences were heavily filtered. For this small
+# dataset we can use relatively small networks of 256 hidden nodes and a
+# single GRU layer. After about 40 minutes on a MacBook CPU we'll get some
+# reasonable results.
 #
-
-#output_words, attentions = evaluate(
-#    encoder1, attn_decoder1, "je suis trop froid .")
-#plt.matshow(attentions.numpy())
-
-
-######################################################################
-# For a better viewing experience we will do the extra work of adding axes
-# and labels:
+# .. Note::
+#    If you run this notebook you can train, interrupt the kernel,
+#    evaluate, and continue training later. Comment out the lines where the
+#    encoder and decoder are initialized and run ``trainIters`` again.
 #
-
-def showAttention(input_sentence, output_words, attentions):
-    # Set up figure with colorbar
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    cax = ax.matshow(attentions.numpy(), cmap='bone')
-    fig.colorbar(cax)
-
-    # Set up axes
-    ax.set_xticklabels([''] + input_sentence.split(' ') +
-                       ['<EOS>'], rotation=90)
-    ax.set_yticklabels([''] + output_words)
-
-    # Show label at every tick
-    ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
-    ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
-
-    plt.show()
-
-
-def evaluateAndShowAttention(input_sentence):
-    output_words, attentions = evaluate(
-        encoder1, attn_decoder1, input_sentence)
-    print('input =', input_sentence)
-    print('output =', ' '.join(output_words))
-    showAttention(input_sentence, output_words, attentions)
-
-encoder1, attn_decoder1 = torch.load('./model/seq2seq_encoder_decoder.pkl')
-
-evaluateAndShowAttention("그새끼 미친놈이네")
-
-evaluateAndShowAttention("미친놈이 꺼져")
-
-evaluateAndShowAttention("그새끼 재수없네")
-
-evaluateAndShowAttention("개좋아")
