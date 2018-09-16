@@ -89,6 +89,7 @@ import unicodedata
 import string
 import re
 import random
+import os
 
 import torch
 import torch.nn as nn
@@ -262,22 +263,14 @@ def prepareData(lang1, lang2, reverse=False):
     input_lang, output_lang, pairs = readLangs(lang1, lang2, reverse)
     print("Read %s sentence pairs" % len(pairs))
     #pairs = filterPairs(pairs)
-    print("pairs: ", pairs)
 
-    print("Trimmed to %s sentence pairs" % len(pairs))
-    print("Counting words...")
     for pair in pairs:
         input_lang.addSentence(pair[0])
         output_lang.addSentence(pair[1])
-    print("Counted words:")
-    print(input_lang.name, input_lang.n_words)
-    print(output_lang.name, output_lang.n_words)
     return input_lang, output_lang, pairs
 
 
 input_lang, output_lang, pairs = prepareData('user', 'nuguri', False)
-print("input, output, pairs", input_lang, output_lang, pairs)
-print(random.choice(pairs))
 
 
 ######################################################################
@@ -390,6 +383,7 @@ class DecoderRNN(nn.Module):
     def forward(self, input, hidden):
         output = self.embedding(input).view(1, 1, -1)
         output = F.relu(output)
+        self.gru.flatten_parameters()
         output, hidden = self.gru(output, hidden)
         output = self.softmax(self.out(output[0]))
         return output, hidden
@@ -463,6 +457,7 @@ class AttnDecoderRNN(nn.Module):
         output = self.attn_combine(output).unsqueeze(0)
 
         output = F.relu(output)
+        self.gru.flatten_parameters()
         output, hidden = self.gru(output, hidden)
 
         output = F.log_softmax(self.out(output[0]), dim=1)
@@ -773,4 +768,11 @@ trainIters(encoder1, attn_decoder1, 75000, print_every=5000)
 ######################################################################
 
 evaluateRandomly(encoder1, attn_decoder1)
+try:
+    if not (os.path.isdir('model')):
+        os.makedirs(os.path.join('model'))
+except OSError as e:
+    if e.errno != errno.EEXIST:
+        print("failed to directory!")
+        raise
 torch.save([encoder1, attn_decoder1], './model/seq2seq_encoder_decoder.pkl')

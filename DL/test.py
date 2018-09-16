@@ -1,4 +1,4 @@
-#*- coding: utf-8 -*-
+#- coding: utf-8 -*-
 """
 Translation with a Sequence to Sequence Network and Attention
 *************************************************************
@@ -89,6 +89,7 @@ import unicodedata
 import string
 import re
 import random
+import sys
 
 import torch
 import torch.nn as nn
@@ -260,24 +261,15 @@ def filterPairs(pairs):
 
 def prepareData(lang1, lang2, reverse=False):
     input_lang, output_lang, pairs = readLangs(lang1, lang2, reverse)
-    print("Read %s sentence pairs" % len(pairs))
     #pairs = filterPairs(pairs)
-    print("pairs: ", pairs)
 
-    print("Trimmed to %s sentence pairs" % len(pairs))
-    print("Counting words...")
     for pair in pairs:
         input_lang.addSentence(pair[0])
         output_lang.addSentence(pair[1])
-    print("Counted words:")
-    print(input_lang.name, input_lang.n_words)
-    print(output_lang.name, output_lang.n_words)
     return input_lang, output_lang, pairs
 
 
 input_lang, output_lang, pairs = prepareData('user', 'nuguri', False)
-print("input, output, pairs", input_lang, output_lang, pairs)
-print(random.choice(pairs))
 
 
 ######################################################################
@@ -390,6 +382,7 @@ class DecoderRNN(nn.Module):
     def forward(self, input, hidden):
         output = self.embedding(input).view(1, 1, -1)
         output = F.relu(output)
+        self.gru.flatten_parameters()
         output, hidden = self.gru(output, hidden)
         output = self.softmax(self.out(output[0]))
         return output, hidden
@@ -463,6 +456,7 @@ class AttnDecoderRNN(nn.Module):
         output = self.attn_combine(output).unsqueeze(0)
 
         output = F.relu(output)
+        self.gru.flatten_parameters()
         output, hidden = self.gru(output, hidden)
 
         output = F.log_softmax(self.out(output[0]), dim=1)
@@ -788,6 +782,7 @@ def showAttention(input_sentence, output_words, attentions):
     plt.show()
 
 
+
 def evaluateAndShowAttention(input_sentence):
     output_words, attentions = evaluate(
         encoder1, attn_decoder1, input_sentence)
@@ -797,10 +792,16 @@ def evaluateAndShowAttention(input_sentence):
 
 encoder1, attn_decoder1 = torch.load('./model/seq2seq_encoder_decoder.pkl')
 
-evaluateAndShowAttention("그새끼 미친놈이네")
 
-evaluateAndShowAttention("미친놈이 꺼져")
+print("argument numbers: ", len(sys.argv))
 
-evaluateAndShowAttention("그새끼 재수없네")
+input_sentence = ''
+for i in range(1,len(sys.argv)):
+    input_sentence += sys.argv[i]
+    input_sentence += '/'
 
-evaluateAndShowAttention("개좋아")
+# argument slicing
+input_sentence = input_sentence[:-1]
+
+if input_sentence is not '':
+    evaluateAndShowAttention(input_sentence)
