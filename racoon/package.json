@@ -1,0 +1,26 @@
+{
+  "name": "racoon",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.3",
+    "crypto-promise": "^2.1.0",
+    "debug": "~2.6.9",
+    "ejs": "^2.6.1",
+    "express": "~4.16.0",
+    "html": "^1.0.0",
+    "http-errors": "~1.6.2",
+    "import": "0.0.6",
+    "jade": "~1.11.0",
+    "morgan": "^1.9.1",
+    "node-gyp": "^3.8.0",
+    "python-shell": "^1.0.4",
+    "rebuild": "^0.1.2",
+    "torch": "^0.2.7",
+    "urlencode": "^1.1.0"
+  }
+}

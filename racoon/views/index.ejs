@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title> Polite Raccoon </title>
+
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/aboutlink.css" />
+    <link href="https://fonts.googleapis.com/css?family=Cute+Font|Gamja+Flower|Gugi|Hi+Melody|Kirang+Haerang|Poor+Story" rel="stylesheet">
+  </head>
+
+  <body>
+    <!-- header -->
+    <header>
+      <div id="heading">
+        <h1 class="head" id="pagetop"style="cursor: pointer;">" 예의차려주는 <span class="em"> 너구리</span> "</h1>
+      </div>
+      <div class="menu"><hr />
+        <nav>
+          <ul>
+            <li> <a href="#popup" class="open"> About </a> </li>
+            <li> <a class="active" href="#raccoon"> Raccoon </a> </li>
+          </ul>
+        </nav><hr /><br />
+      </div>
+    </header>
+
+    <!-- popup window(onclick About) -->
+    <div id="popup" class="overlay">
+    	<div class="popup">
+    		<h2>소개 및 사용방법</h2>
+    		<a class="close" href="#">&times;</a>
+    		<div class="content">
+    			비속어가 섞인 문장은 고운 우리말로 바꿔주는 프로그램 입니다.<br />
+          '너구리 학습' 버튼을 클릭 후, 비속어가 섞인 문장을 입력하고, '너구리 학습' 버튼을 눌러보세요!
+    		</div>
+    	</div>
+    </div>
+
+    <!-- javascript for data server -->
+    <script>
+    function processForm(){
+      $.ajax({
+        type: 'POST',
+          url : /,
+          data : encodeURIComponent(document.getElementById("text_box").value)
+              text_box : $('input:text').val()
+          },
+          success : function(data) {
+              $('#result').html(data);
+          }
+      })
+  })
+    </script>
+
+    <!-- 본문 -->
+    <div class="container">
+        <form action-"" method="POST" onsubmit="processForm();return false;">
+          <input type="text" name="text_box" class="text_box" />
+          <input type="submit" name="submit" class="submit" value="너구리변신" />
+        </form>
+
+        <div id="result">
+          <!-- 변환값 출력 -->
+        </div>
+
+    </div>
+    <br /><br />
+
+    <!-- footer -->
+    <footer id="footer">
+        <p> created by team 너굴맨<br /><Br </p>
+    </footer>
+
+  </body>
+</html>
