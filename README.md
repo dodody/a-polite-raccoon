@@ -7,7 +7,7 @@ pytorch 0.4.1 && python 3.6
 ### 1. Environment Setup Guide ( AWS T2 instance )
 1. Download "Nuguri.pem" https://drive.google.com/open?id=1yMMtW_pSSSIkgzYmfHPn8q-OumGGlxCH 
 2. Move folder which has "Nuguri.pem" , if your "Nuguri.pem" file located in Downloads folder,
-<pre><code> cd Downloads
+<pre><code> cd Downloads </code></pre>
 3. Try ssh connection  
 <pre><code> ssh -i "Nuguri.pem" ubuntu@ec2-34-215-156-12.us-west-2.compute.amazonaws.com </code></pre>
 4. If 1~3 finished, you can access AWS T2 instance.
