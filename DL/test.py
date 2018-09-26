@@ -492,12 +492,10 @@ def indexesFromSentence(lang, sentence):
         isInIndex = False
         for i in lang.word2index:
             if word == i:
-                print('word:', word, 'word2index:', lang.word2index[i])
                 isInIndex = True
         if isInIndex == True:
             d_sentence.append(word)
 
-    print(d_sentence)
     return [lang.word2index[word] for word in d_sentence]
     #return [lang.word2index[word] for word in sentence.split(' ')]
 
