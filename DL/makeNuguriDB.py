@@ -33,3 +33,5 @@ if len(sys.argv)==2 :
     for i in range(len(input_data)):
         indata = input_data[i] + '\t' + output_data[i] + '\n'
         f.write(indata)
+
+    print('finished. please check data/user-nuguri.txt. ')
