@@ -485,7 +485,21 @@ class AttnDecoderRNN(nn.Module):
 #
 
 def indexesFromSentence(lang, sentence):
-    return [lang.word2index[word] for word in sentence.split(' ')]
+    # SungMan
+    # list 에서 찾아보고 없을 경우, 문장에서 제거. 
+    d_sentence = []
+    for word in sentence.split(' '):
+        isInIndex = False
+        for i in lang.word2index:
+            if word == i:
+                print('word:', word, 'word2index:', lang.word2index[i])
+                isInIndex = True
+        if isInIndex == True:
+            d_sentence.append(word)
+
+    print(d_sentence)
+    return [lang.word2index[word] for word in d_sentence]
+    #return [lang.word2index[word] for word in sentence.split(' ')]
 
 
 def tensorFromSentence(lang, sentence):
@@ -788,12 +802,10 @@ def evaluateAndShowAttention(input_sentence):
         encoder1, attn_decoder1, input_sentence)
     print('input =', input_sentence)
     print('output =', ' '.join(output_words))
-    showAttention(input_sentence, output_words, attentions)
 
 encoder1, attn_decoder1 = torch.load('./model/seq2seq_encoder_decoder.pkl')
 
 
-print("argument numbers: ", len(sys.argv))
 
 input_sentence = ''
 for i in range(1,len(sys.argv)):
