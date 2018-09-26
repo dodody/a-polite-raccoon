@@ -206,7 +206,7 @@ def normalizeString(s):
 # flag to reverse the pairs.
 #
 
-def readLangs(lang1, lang2, reverse=True):
+def readLangs(lang1, lang2, reverse=False):
     print("Reading lines...")
 
     # Read the file and split into lines

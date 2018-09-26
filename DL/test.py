@@ -798,7 +798,7 @@ print("argument numbers: ", len(sys.argv))
 input_sentence = ''
 for i in range(1,len(sys.argv)):
     input_sentence += sys.argv[i]
-    input_sentence += '/'
+    input_sentence += ' '
 
 # argument slicing
 input_sentence = input_sentence[:-1]

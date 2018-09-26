@@ -18,13 +18,16 @@ if len(sys.argv)==2 :
     # make new Dataframe
     new_df = pd.DataFrame({'input': input_data, 'output': output_data})
     
-    # delete Nan Values
-    new_df.dropna()
-
+    # delete Nan Values & reset index
+    new_df = new_df.dropna(axis=0)
+    new_df = new_df.reset_index()
+    
     # data divide
-    input_data = new_df.iloc[:0]
-    output_data = new_df.iloc[:1]
-
+    input_data = new_df['input']
+    output_data = new_df['output']
+    
+    print('input_data size: ', len(input_data))
+    print('output_data size: ', len(output_data))
     # write .txt file until input data size 
     f = open("data/user-nuguri.txt",'w')
     for i in range(len(input_data)):
