@@ -17,7 +17,7 @@ pytorch 0.4.1 && python 3.6
 1. Download Google spread sheet and excute makeNuguriDB.py
 <pre><code> python3 makeNuguriDB.py [filename] </code></pre>
 2. Example 
-<pre><code> python3 makeNuguriDB.py data/nuguridataset.csv </code></pre>
+<pre><code> python3 makeNuguriDB.py data/nuguri_dataset.csv </code></pre>
 3. Check your data folder, then you can find user-nuguri.txt.(need to train)
 
 ### 3. Training
