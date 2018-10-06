@@ -23,14 +23,14 @@ router.post('/', async(req,res)=>{
 			message:"Null value"
 		});
 	}else{
-		PythonShell.run('hello.py',{args:[inputText]},(err, results)=> {
+		PythonShell.run('test.py',{args:[inputText]},(err, results)=> {
 	//	PythonShell.run('test.py',{args:[inputText]},(err, results)=> {
 	
 	    	if (err) throw err;
 	    	else{
 	    	//	res.writeHead(201, {'Content-Type':'text/plain; charset=utf-8'}) 
 	    		res.status(201, {'Content-Type':'text/plain; charset=utf-8'}).send({
-	    			data:results[0]
+	    			data:results[2]
 	    		})  		
 	    	}
 		});
