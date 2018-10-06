@@ -207,7 +207,6 @@ def normalizeString(s):
 #
 
 def readLangs(lang1, lang2, reverse=True):
-    print("Reading lines...")
 
     # Read the file and split into lines
     lines = open('data/%s-%s.txt' % (lang1, lang2), encoding='utf-8').\
@@ -798,8 +797,7 @@ def showAttention(input_sentence, output_words, attentions):
 def evaluateAndShowAttention(input_sentence):
     output_words, attentions = evaluate(
         encoder1, attn_decoder1, input_sentence)
-    print('input =', input_sentence)
-    print('output =', ' '.join(output_words))
+    print(' '.join(output_words[:-1]))
 
 encoder1, attn_decoder1 = torch.load('./model/seq2seq_encoder_decoder.pkl')
 
