@@ -1,0 +1,81 @@
+<html>
+<meta charset="utf-8" />
+
+<head>
+<link href="https://fonts.googleapis.com/css?family=Gaegu|Gamja+Flower|Nanum+Gothic" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/layout.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css"/ />
+<style>
+
+</style>
+</head>
+
+<body>
+  <div id="total">
+    <form class="form" method="post" action="#" name="inputform">
+    <div class="grid">
+      <div class="grid_item grid_item_1 heading">
+        <div class="title">
+          <p> 안녕, 나는 </p>
+          <p> <strong>대신 예의를 차려주는 너구리</strong>야!!!</p>
+          <p> 너가 욕을 적으면, 내가 예의 있게 바꿔줄게!!!</p><br /><br />
+        </div>
+      </div>
+      <textarea placeholder="ex) 어우 씨발 오늘 김교수 조깟네" class="grid_item grid_item_3 textarea" id="textarea">
+      </textarea>
+      </form>
+      <a href="index2.html" class="grid_item grid_item_4 changebtn" onclick="document.inputform.submit()">CHANGE</a>
+
+    </div>
+
+</div>
+<script>
+function createLink(val) {
+    document.getElementById("textarea").innerHTML = val;
+    document.getElementById('buttonId').style.display = 'none';
+    document.getElementById('sentenceId').style.display = 'none';
+
+    localStorage.setItem("textArea", val);
+}
+</script>
+<!--
+<a href="#" onclick="document.NameofUrForm.submit()">Link</a>
+  <script type="text/javascript">
+  function myFunction() {
+    var replaybtn = document.createElement("button");
+    var t1 = document.createTextNode("REPLAY");
+    replaybtn.appendChild(t1);
+
+    var share1 = document.createElement("a");
+    var t2 = document.createTextNode("공유")
+    share1.appendChild(t2);
+
+    var share2 = document.createElement("a");
+    var t2 = document.createTextNode("공유")
+    share2.appendChild(t2);
+
+    var share3 = document.createElement("a");
+    var t2 = document.createTextNode("공유")
+    share3.appendChild(t2);
+
+    var before = document.createElement("div");
+    var after = document.createElement("div");
+
+
+
+   document.body.appendChild(replaybtn);
+   document.body.appendChild(share1);
+   document.body.appendChild(share2);
+   document.body.appendChild(share3);
+  document.body.appendChild(before);
+  document.body.appendChild(after);
+   ;
+
+return true;
+}
+
+  </script>
+-->
+
+</body>
+</html>
