@@ -1,0 +1,23 @@
+/* index1.html 페이지 레이아웃 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, [col] 1fr);
+  grid-template-rows: repeat(5, [row] auto);
+  grid-column-gap: 1em;
+  grid-row-gap: 15px;
+}
+
+.grid_item_1{
+  grid-column: col 4 / span 6;
+  grid-row: row / span 20;
+}
+
+.grid_item_3 {
+  grid-column: col 4 / span 6;
+  grid-row: row 20 / span 16;
+}
+
+.grid_item_4 {
+  grid-column: col 4 / span 6;
+  grid-row: row 36;
+}

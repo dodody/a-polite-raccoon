@@ -1,76 +1,82 @@
-<!DOCTYPE html>
+<!-- 메인 페이지 -->
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title> Polite Raccoon </title>
+<meta charset="utf-8" />
 
-    <link rel="stylesheet" href="stylesheets/style.css" />
-    <link rel="stylesheet" href="stylesheets/aboutlink.css" />
-    <link href="https://fonts.googleapis.com/css?family=Cute+Font|Gamja+Flower|Gugi|Hi+Melody|Kirang+Haerang|Poor+Story" rel="stylesheet">
-  </head>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Gaegu|Gamja+Flower|Nanum+Gothic" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/layout.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css"/ />
+<style>
 
-  <body>
-    <!-- header -->
-    <header>
-      <div id="heading">
-        <h1 class="head" id="pagetop"style="cursor: pointer;">" 예의차려주는 <span class="em"> 너구리</span> "</h1>
-      </div>
-      <div class="menu"><hr />
-        <nav>
-          <ul>
-            <li> <a href="#popup" class="open"> About </a> </li>
-            <li> <a class="active" href="#raccoon"> Raccoon </a> </li>
-          </ul>
-        </nav><hr /><br />
-      </div>
-    </header>
+</style>
+</head>
 
-    <!-- popup window(onclick About) -->
-    <div id="popup" class="overlay">
-    	<div class="popup">
-    		<h2>소개 및 사용방법</h2>
-    		<a class="close" href="#">&times;</a>
-    		<div class="content">
-    			비속어가 섞인 문장은 고운 우리말로 바꿔주는 프로그램 입니다.<br />
-          '너구리 학습' 버튼을 클릭 후, 비속어가 섞인 문장을 입력하고, '너구리 학습' 버튼을 눌러보세요!
-    		</div>
-    	</div>
-    </div>
-
-    <!-- javascript for data server -->
-    <script>
-    function processForm(){
-      $.ajax({
-        type: 'POST',
-          url : /,
-          data : encodeURIComponent(document.getElementById("text_box").value)
-              text_box : $('input:text').val()
-          },
-          success : function(data) {
-              $('#result').html(data);
-          }
-      })
-  })
-    </script>
-
-    <!-- 본문 -->
-    <div class="container">
-        <form action-"" method="POST" onsubmit="processForm();return false;">
-          <input type="text" name="text_box" class="text_box" />
-          <input type="submit" name="submit" class="submit" value="너구리변신" />
-        </form>
-
-        <div id="result">
-          <!-- 변환값 출력 -->
+<body>
+  <div id="total">
+    <form class="form" method="post" action="#" name="inputform">
+    <div class="grid">
+      <div class="grid_item grid_item_1 heading">
+        <div class="title">
+          <p> 안녕, 나는 </p>
+          <p> <strong>대신 예의를 차려주는 너구리</strong>야!!!</p>
+          <p> 너가 욕을 적으면, 내가 예의 있게 바꿔줄게!!!</p><br /><br />
         </div>
+      </div>
+      <textarea placeholder="ex) 어우 씨발 오늘 김교수 조깟네" class="grid_item grid_item_3 textarea" id="textarea">
+      </textarea>
+      </form>
+      <a href="index2.html" class="grid_item grid_item_4 changebtn" onclick="document.inputform.submit()">CHANGE</a>
 
     </div>
-    <br /><br />
 
-    <!-- footer -->
-    <footer id="footer">
-        <p> created by team 너굴맨<br /><Br </p>
-    </footer>
+</div>
+<script>
+function createLink(val) {
+    document.getElementById("textarea").innerHTML = val;
+    document.getElementById('buttonId').style.display = 'none';
+    document.getElementById('sentenceId').style.display = 'none';
 
-  </body>
+    localStorage.setItem("textArea", val);
+}
+</script>
+<!--
+<a href="#" onclick="document.NameofUrForm.submit()">Link</a>
+  <script type="text/javascript">
+  function myFunction() {
+    var replaybtn = document.createElement("button");
+    var t1 = document.createTextNode("REPLAY");
+    replaybtn.appendChild(t1);
+
+    var share1 = document.createElement("a");
+    var t2 = document.createTextNode("공유")
+    share1.appendChild(t2);
+
+    var share2 = document.createElement("a");
+    var t2 = document.createTextNode("공유")
+    share2.appendChild(t2);
+
+    var share3 = document.createElement("a");
+    var t2 = document.createTextNode("공유")
+    share3.appendChild(t2);
+
+    var before = document.createElement("div");
+    var after = document.createElement("div");
+
+
+
+   document.body.appendChild(replaybtn);
+   document.body.appendChild(share1);
+   document.body.appendChild(share2);
+   document.body.appendChild(share3);
+  document.body.appendChild(before);
+  document.body.appendChild(after);
+   ;
+
+return true;
+}
+
+  </script>
+-->
+
+</body>
 </html>
