@@ -28,7 +28,7 @@ router.post('/', async(req,res)=>{
 	    	if (err) throw err;
 	    	else{
 	    		res.status(201, {'Content-Type':'text/plain; charset=utf-8'}).send({
-	    			data:results[2]
+	    			data:results[0]
 	    		})  		
 	    	}
 		});
