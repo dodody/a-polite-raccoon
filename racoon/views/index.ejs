@@ -5,7 +5,8 @@
 <head>
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Gamja+Flower|Nanum+Gothic" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="stylesheets/layout.css" />
-<link rel="stylesheet" type="text/css" href="stylesheets/style.css"/ />
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/dodytest.css" />
 <style>
 
 </style>
@@ -13,7 +14,7 @@
 
 <body>
   <div id="total">
-    <form class="form" method="post" action="#" name="inputform">
+    <!-- <form class="form" method="post" action="#" name="inputform"> -->
     <div class="grid">
       <div class="grid_item grid_item_1 heading">
         <div class="title">
@@ -22,22 +23,52 @@
           <p> 너가 욕을 적으면, 내가 예의 있게 바꿔줄게!!!</p><br /><br />
         </div>
       </div>
-      <textarea placeholder="ex) 어우 씨발 오늘 김교수 조깟네" class="grid_item grid_item_3 textarea" id="textarea">
+      <textarea placeholder="ex) 어우 씨발 오늘 김교수 조깟네" class="grid_item grid_item_3 textarea input_text" id="textarea">
       </textarea>
-      </form>
-      <a href="index2.html" class="grid_item grid_item_4 changebtn" onclick="document.inputform.submit()">CHANGE</a>
+      <div class="result"></div>
+      <!-- </form> -->
+      <button class="grid_item grid_item_4 changebtn">CHANGE</button>
 
     </div>
 
 </div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-function createLink(val) {
-    document.getElementById("textarea").innerHTML = val;
-    document.getElementById('buttonId').style.display = 'none';
-    document.getElementById('sentenceId').style.display = 'none';
+$('.changebtn').click(function() {
+  var input_text = $('.input_text').val();
 
-    localStorage.setItem("textArea", val);
-}
+  $.ajax({
+    url: "/",
+    method: "POST",
+    async: true,
+    dataType: "json",
+    data: { text_box: input_text },
+    error: function(e) {
+      console.log(e);
+    },
+    success: function(r) {
+      $('.result').val(r.data);
+      console.log(r);
+    }
+  });
+
+});
+
+
+
+
+// console.log('l,,')
+// function createLink(val) {
+//     document.getElementById("textarea").innerHTML = val;
+//     document.getElementById('buttonId').style.display = 'none';
+//     document.getElementById('sentenceId').style.display = 'none';
+
+//     localStorage.setItem("textArea", val);
+// }
+//
+
+
+
 </script>
 <!--
 <a href="#" onclick="document.NameofUrForm.submit()">Link</a>
