@@ -24,7 +24,7 @@ body{
     width: 90%;
     max-width: 500px;
     margin: 0 auto;
-    margin-top: -250px;
+    margin-top: -280px;
     padding-left: 30%; 
     display: block;
     /* for z-index */
@@ -64,19 +64,18 @@ body{
     color: #333;
     resize: none;
     border: none;
-    overflow-y: scroll;
 }
 
 .main-text__result{
     width: 100%;
     height: 90px;
-    font-size: 0.925rem;
-    color: #333;
 }
+
 hr{
     opacity: 0.2;
     margin-bottom: -15px;
 }
+
 .result-mode {
     color: #956939;
     font-weight: 700;
@@ -84,16 +83,23 @@ hr{
     margin-right:10px;
     float: left; 
 }
+
 .result-text{
     float: left;
     color: #333;
     font-size: 0.925rem;
 }
+
 /* 3. 버튼 및 공유 css
 ========================================================================== */
 .content__button{
     margin-top:10px; 
 }
+.change-btn2{
+    border-radius: 15px !important;
+    /* width: 70% !important; */
+}
+
 .change-btn{
     width: 100%;
     height: auto;
@@ -124,39 +130,74 @@ hr{
 /* 4. 로고 및 저작권 css
 ========================================================================== */
 .content__footer{
-    padding: 50px 0 50px 0;  
+    padding: 120px 0 50px 0;  
 }
+
 .logo{
-    width: 40px;
+    width: 30px;
     height: auto;
-    margin-bottom:10px; 
+    padding: 5px;
+    margin: 0 auto;
+    margin-bottom:2px; 
+    position: relative;
+    display: block;
+    border: 1px solid #956939;
 }
+.logo:hover{
+    width: 32px;
+    border: none;
+}
+
 .copyright{
     font-size: 10px;
     color: #fff;
     font-weight: 100;
+    text-align: center;
     letter-spacing: .5px;
 }
 
 /* media query - basic css
 ========================================================================== */
 @media screen and (max-width:599px) {
+    /* 1. 이미지 배치 css
+    ========================================================================== */
     .content__raccoon-img{
-        width: 90%;
-        
+        width: 80%;
+        margin: 0 auto;
+    }
+    /* 2. 텍스트 박스 css
+    ========================================================================== */
+    .content__textarea{
+        margin-top: -110%;
+    }
+    .intro-text{
+        font-size: 18px;
+    }
+    .intro-text > strong{
+        font-size: 22px;
+    }
+    .main-text__area{
+        margin-top: 50%; 
+    }
+    .main-text__area-inner >  textarea {
+        font-size: 0.725rem;
+    }
+    
+    /* 4. 로고 및 저작권 css
+    ========================================================================== */
+    .content__footer{
+        padding: 80px 0 20px 0;
+    }
+    .logo{
+        width: 25px;
+    }
+    .copyright{
+        font-size: 8px;
     }
 }
 
-@media (min-width:600px) (max-width:839px) {
-    
-}
-
-@media (min-width:840px){
-    
-}
-
 /* media query - display css
-grid 기준 : ~ 599 / 600 ~ 839 / 840 ~ 1023 / 1024 ~
+grid 기준 : ~ 599 /600 ~ 1023 / 1024 ~
 ========================================================================== */
 @media (max-width:599px) {
     .hide-on-phone {
@@ -167,16 +208,7 @@ grid 기준 : ~ 599 / 600 ~ 839 / 840 ~ 1023 / 1024 ~
     }
 }
 
-@media (min-width:600px) (max-width:839px) {
-    .hide-on-tablet {
-        display:none;
-    }
-    .show-on-tablet {
-        display:block;
-    }
-}
-
-@media (min-width:840px){
+@media (min-width:600px){
     .hide-on-desktop {
         display:none;
     }

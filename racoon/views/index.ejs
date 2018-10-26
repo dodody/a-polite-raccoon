@@ -5,7 +5,7 @@
 
 <head>
 <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="stylesheets/dodytest.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
 <style>
 
 </style>
@@ -23,13 +23,11 @@
         <br>너가 욕을 적으면, 
         <br class="hide-on-desktop">내가 예의있게 바꿔줄게!
       </div>
-
       <div class="main-text__area">
         <div class="main-text__area-inner">
           <textarea class="input-text" id="" autofocus placeholder="ex) 어우 시발 오늘 김교수 조깟네"></textarea>
           <div class="main-text__result">
-            <!-- 서버에서 내용 받아오면, 여기가 활성화 됨 -->
-            <div class="">
+            <div class="result-box" style="display:none;">
               <hr>
               <p class="result-mode">예의모드</p>
               <p class="result-text"></p>
@@ -44,57 +42,39 @@
     </div>
     <!-- 4. 로고 및 저작권 -->
     <footer class="content__footer">
-      <img class="logo" src="images/logo.svg" alt="logo">
+      <a href="http://prography.org/" target="_blank"><img class="logo" src="images/logo.svg" alt="logo"></a>
       <div class="copyright">Copyright 2018. Prography RaccoonMan Team. all rights reserved.</div>
     </footer>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
+    $('.change-btn').click(function(){
+      var input_text = $('.input-text').val();
+      var change_button =
+        $(".change-btn").empty();
+        $(".change-btn").append("Replay"); 
+        $(".change-btn").addClass("change-btn2");
 
+      $.ajax({
+        url:"/",
+        method: "POST",
+        async:true,
+        dataType: "json",
+        data: {text_box: input_text},
+        error: function(e) {
+          console.log(e);
+        },
+        success: function(r){
+          $(".result-box").attr("style", "display:block;");
+          $('.result-text').text(r.data);
+          console.log(r.data);
+          $(change_button);
+        }
+      })
+    });
   </script>
 
-
-  <!-- <div id="total">
-    <form class="form" method="post" action="#" name="inputform">
-    <div class="grid">
-      <div class="grid_item grid_item_1 heading">
-        <div class="title">
-          <p> 안녕, 나는 </p>
-          <p> <strong>대신 예의를 차려주는 너구리</strong>야!!!</p>
-          <p> 너가 욕을 적으면, 내가 예의 있게 바꿔줄게!!!</p><br /><br />
-        </div>
-      </div>
-      <textarea placeholder="ex) 어우 씨발 오늘 김교수 조깟네" class="grid_item grid_item_3 textarea input_text" id="textarea">
-      </textarea>
-      <div class="result"></div>
-      </form>
-      <button class="grid_item grid_item_4 changebtn">CHANGE</button>
-    </div>
-  </div> -->
-
-
-<script>
-$('.change-btn').click(function() {
-  var input_text = $('.input-text').val();
-
-  $.ajax({
-    url: "/",
-    method: "POST",
-    async: true,
-    dataType: "json",
-    data: { text_box: input_text },
-    error: function(e) {
-      console.log(e);
-    },
-    success: function(r) {
-      $('.result-text').text(r.data);
-      console.log(r.data);
-    }
-  });
-
-});
-</script>
 
 </body>
 </html>
