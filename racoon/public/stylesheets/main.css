@@ -1,0 +1,218 @@
+/* basic css
+========================================================================== */
+* {
+    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+    outline: none !important;
+}
+
+body{
+    margin: 0;
+    width: 100%;
+    height: auto;
+    background-color: #956939;
+}
+
+.container{
+    width: 90%;
+    max-width: 730px;
+    margin: 0 auto;
+}
+
+/* 1. 이미지 배치 css
+========================================================================== */
+.content__raccoon-img{
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: -280px;
+    padding-left: 30%; 
+    display: block;
+    /* for z-index */
+    position: relative;
+    z-index: -2;
+}
+/* 2. 텍스트 박스 css
+========================================================================== */
+.content__textarea{
+    margin-top: -250px;
+}
+.intro-text{
+    color: #fff;
+    font-size: 24px;
+    font-weight: 100;
+    margin-bottom: 20px;
+}
+.intro-text > strong{
+    font-size: 28px;
+}
+.main-text__area{
+    height: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.05), 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+.main-text__area-inner{
+    padding: 10px;
+    border: 1px dotted #f2f2f2;
+    border-radius: 10px 10px 0 0;
+}
+.main-text__area-inner >  textarea {
+    width: 100%;
+    height: 90px;
+    font-size: 0.925rem;
+    color: #333;
+    resize: none;
+    border: none;
+}
+
+.main-text__result{
+    width: 100%;
+    height: 90px;
+}
+
+hr{
+    opacity: 0.2;
+    margin-bottom: -15px;
+}
+
+.result-mode {
+    color: #956939;
+    font-weight: 700;
+    font-size: 0.925rem;
+    margin-right:10px;
+    float: left; 
+}
+
+.result-text{
+    float: left;
+    color: #333;
+    font-size: 0.925rem;
+}
+
+/* 3. 버튼 및 공유 css
+========================================================================== */
+.content__button{
+    margin-top:10px; 
+}
+.change-btn2{
+    border-radius: 15px !important;
+    /* width: 70% !important; */
+}
+
+.change-btn{
+    width: 100%;
+    height: auto;
+    background-color: #be9c78;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: none;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.05), 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+.change-btn:hover{
+    background-color: #52310e;
+    transition: 0.3s;
+}
+.change-btn:active{
+    background-color: #311e09;
+    transition: 0.3s;
+}
+.change-btn:checked{
+    background-color: #be9c78;
+    width: 70%;
+    border-radius: 10px;
+}
+
+/* 4. 로고 및 저작권 css
+========================================================================== */
+.content__footer{
+    padding: 120px 0 50px 0;  
+}
+
+.logo{
+    width: 30px;
+    height: auto;
+    padding: 5px;
+    margin: 0 auto;
+    margin-bottom:2px; 
+    position: relative;
+    display: block;
+    border: 1px solid #956939;
+}
+.logo:hover{
+    width: 32px;
+    border: none;
+}
+
+.copyright{
+    font-size: 10px;
+    color: #fff;
+    font-weight: 100;
+    text-align: center;
+    letter-spacing: .5px;
+}
+
+/* media query - basic css
+========================================================================== */
+@media screen and (max-width:599px) {
+    /* 1. 이미지 배치 css
+    ========================================================================== */
+    .content__raccoon-img{
+        width: 80%;
+        margin: 0 auto;
+    }
+    /* 2. 텍스트 박스 css
+    ========================================================================== */
+    .content__textarea{
+        margin-top: -110%;
+    }
+    .intro-text{
+        font-size: 18px;
+    }
+    .intro-text > strong{
+        font-size: 22px;
+    }
+    .main-text__area{
+        margin-top: 50%; 
+    }
+    .main-text__area-inner >  textarea {
+        font-size: 0.725rem;
+    }
+    
+    /* 4. 로고 및 저작권 css
+    ========================================================================== */
+    .content__footer{
+        padding: 80px 0 20px 0;
+    }
+    .logo{
+        width: 25px;
+    }
+    .copyright{
+        font-size: 8px;
+    }
+}
+
+/* media query - display css
+grid 기준 : ~ 599 /600 ~ 1023 / 1024 ~
+========================================================================== */
+@media (max-width:599px) {
+    .hide-on-phone {
+        display:none;
+    }
+    .show-on-phone {
+        display:block;
+    }
+}
+
+@media (min-width:600px){
+    .hide-on-desktop {
+        display:none;
+    }
+    .show-on-desktop {
+        display:block;
+    }
+}

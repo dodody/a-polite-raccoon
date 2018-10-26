@@ -13,11 +13,13 @@ router.use(bodyParser.json());
 router.get('/', function(req, res, next) {
   res.render('index');
  });
-
-
+ 
 router.post('/', async(req,res)=>{
 	let inputText = req.body.text_box;
-
+	
+	// res.send({data: "성공!"});
+	//  return;
+	 
 	if(!inputText){
 		res.status(400).send({
 			message:"Null value"
