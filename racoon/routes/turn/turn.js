@@ -13,7 +13,9 @@ router.use(bodyParser.json());
 router.get('/', function(req, res, next) {
   res.render('index');
  });
-
+ 
+ res.send({data: "성공!"});
+ return;
 
 router.post('/', async(req,res)=>{
 	let inputText = req.body.text_box;

@@ -1,11 +1,10 @@
 <!-- 메인 페이지 -->
 <html>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
-<link href="https://fonts.googleapis.com/css?family=Gaegu|Gamja+Flower|Nanum+Gothic" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="stylesheets/layout.css" />
-<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="stylesheets/dodytest.css" />
 <style>
 
@@ -13,8 +12,51 @@
 </head>
 
 <body>
-  <div id="total">
-    <!-- <form class="form" method="post" action="#" name="inputform"> -->
+  <div class="container">
+    <!-- 1. 이미지 배치 -->
+      <img class="content__raccoon-img" src="images/raccoon.png" alt="raccoon">
+    <!-- 2. 텍스트 박스 -->
+    <div class="content__textarea">
+      <div class="intro-text">안녕!!! 나는
+        <br><strong>대신 예의를 차려주는
+        <br class="hide-on-desktop">너구리</strong>야!
+        <br>너가 욕을 적으면, 
+        <br class="hide-on-desktop">내가 예의있게 바꿔줄게!
+      </div>
+
+      <div class="main-text__area">
+        <div class="main-text__area-inner">
+          <textarea class="input-text" id="" autofocus placeholder="ex) 어우 시발 오늘 김교수 조깟네"></textarea>
+          <div class="main-text__result">
+            <!-- 서버에서 내용 받아오면, 여기가 활성화 됨 -->
+            <div class="">
+              <hr>
+              <p class="result-mode">예의모드</p>
+              <p class="result-text"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 3. 버튼 및 공유 -->
+    <div class="content__button">
+      <button class="change-btn">CHANGE</button>
+    </div>
+    <!-- 4. 로고 및 저작권 -->
+    <footer class="content__footer">
+      <img class="logo" src="images/logo.svg" alt="logo">
+      <div class="copyright">Copyright 2018. Prography RaccoonMan Team. all rights reserved.</div>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+
+  </script>
+
+
+  <!-- <div id="total">
+    <form class="form" method="post" action="#" name="inputform">
     <div class="grid">
       <div class="grid_item grid_item_1 heading">
         <div class="title">
@@ -26,16 +68,15 @@
       <textarea placeholder="ex) 어우 씨발 오늘 김교수 조깟네" class="grid_item grid_item_3 textarea input_text" id="textarea">
       </textarea>
       <div class="result"></div>
-      <!-- </form> -->
+      </form>
       <button class="grid_item grid_item_4 changebtn">CHANGE</button>
-
     </div>
+  </div> -->
 
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <script>
-$('.changebtn').click(function() {
-  var input_text = $('.input_text').val();
+$('.change-btn').click(function() {
+  var input_text = $('.input-text').val();
 
   $.ajax({
     url: "/",
@@ -47,7 +88,7 @@ $('.changebtn').click(function() {
       console.log(e);
     },
     success: function(r) {
-      $('.result').text(r.data);
+      $('.result-text').text(r.data);
       console.log(r.data);
     }
   });
