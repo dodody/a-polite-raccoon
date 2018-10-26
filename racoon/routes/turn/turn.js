@@ -17,6 +17,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', async(req,res)=>{
 	let inputText = req.body.text_box;
+	
 
 	if(!inputText){
 		res.status(400).send({

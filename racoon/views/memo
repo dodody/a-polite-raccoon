@@ -53,7 +53,65 @@ $('.changebtn').click(function() {
   });
 
 });
+
+
+
+
+// console.log('l,,')
+// function createLink(val) {
+//     document.getElementById("textarea").innerHTML = val;
+//     document.getElementById('buttonId').style.display = 'none';
+//     document.getElementById('sentenceId').style.display = 'none';
+
+//     localStorage.setItem("textArea", val);
+// }
+//
+
+
+
 </script>
+<!--
+<a href="#" onclick="document.NameofUrForm.submit()">Link</a>
+  <script type="text/javascript">
+  function myFunction() {
+    var replaybtn = document.createElement("button");
+    var t1 = document.createTextNode("REPLAY");
+    replaybtn.appendChild(t1);
+
+    var share1 = document.createElement("a");
+    var t2 = document.createTextNode("공유")
+    share1.appendChild(t2);
+
+    var share2 = document.createElement("a");
+    var t2 = document.createTextNode("공유")
+    share2.appendChild(t2);
+
+    var share3 = document.createElement("a");
+    var t2 = document.createTextNode("공유")
+    share3.appendChild(t2);
+
+    var before = document.createElement("div");
+    var after = document.createElement("div");
+
+
+
+   document.body.appendChild(replaybtn);
+   document.body.appendChild(share1);
+   document.body.appendChild(share2);
+   document.body.appendChild(share3);
+  document.body.appendChild(before);
+  document.body.appendChild(after);
+   ;
+
+return true;
+}
+
+  </script>
+-->
 
 </body>
 </html>
+
+
+res.send({data: "성공!"});
+	return;
